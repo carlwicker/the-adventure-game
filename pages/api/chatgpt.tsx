@@ -8,7 +8,7 @@ export default async function handler(
   const { prompt } = req.body;
   const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY });
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: prompt }],
+    messages: [{ role: "system", content: prompt || "" }],
     model: "gpt-3.5-turbo",
   });
 
