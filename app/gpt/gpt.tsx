@@ -5,7 +5,7 @@ import Link from "next/link";
 import GptInput from "./GptInput";
 
 export default function Gpt() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [error, setError] = useState(null);
   const [prompt, setPrompt] = useState("");
 
@@ -51,7 +51,7 @@ export default function Gpt() {
         <div>
           <h1 className="text-lg font-semibold text-white">MARVIN:GPT</h1>
           <pre className="text-md font-normal text-white py-5 overflow-x-auto whitespace-pre-wrap">
-            {data.message.content}
+            {data?.message?.content}
           </pre>
         </div>
       ) : (
