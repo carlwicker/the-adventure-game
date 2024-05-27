@@ -1,30 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import axios from "axios";
-import { useEffect } from "react";
+import OpenAI from "openai";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { prompt } = req.body;
+  const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY });
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: prompt }],
+    model: "gpt-3.5-turbo",
+  });
 
-  try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/engines/davinci-codex/completions",
-      {
-        prompt,
-        max_tokens: 60,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    res.status(200).json({ message: response.data.choices[0].text });
-  } catch (error) {
-    res.status(500).json({ error: "Error calling ChatGPT API" });
-  }
+  return res.status(200).json(completion.choices[0]);
 }
