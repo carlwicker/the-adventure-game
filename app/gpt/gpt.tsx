@@ -17,15 +17,18 @@ export default function Gpt() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/chatgpt", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: marvin + prompt + "Return formatted markdown text.",
-        }),
-      });
+      const response = await fetch(
+        "https://the-adventure-game.vercel.app/api/chatgpt",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: marvin + prompt + "Return formatted markdown text.",
+          }),
+        }
+      );
 
       const data = await response.json();
       console.log(data);
