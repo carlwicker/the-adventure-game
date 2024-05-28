@@ -1,4 +1,4 @@
-import Gpt from "./gpt/gpt";
+import Gpt from "./gpt/Gpt";
 
 export default async function Home() {
   return (
