@@ -7,7 +7,7 @@ import GptInput from "./GptInput";
 export default function Gpt() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState(null);
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState("hello");
 
   const marvin: string = `Reply in the style of Marvin from Hitchikers Guide To the Galaxy and he can be summarized by a few key traits:
   Pessimistic and cynical: He often expects the worst and sees the downside of every situation.
